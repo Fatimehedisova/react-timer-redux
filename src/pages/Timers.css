@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.inputs{
+    display: flex;
+     justify-content: center;
+    margin-top: 100px;
+    gap: 150px;
+    
+}
+.running-btns{
+      display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+.btns-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.running-btns button{
+      padding: 10px 20px;
+  border-radius: 30px;
+  background-color: blueviolet;
+  color: white;
+  font-size: 16px;
+}
+.increment, .decrement{
+   padding: 20px;
+  background-color: blueviolet;
+  color: white;
+  font-size: 20px;
+}
+.decrement{
+    padding: 25px;
+}
+.inputs input{
+     font-size: 60px;
+    width: 20vw;
+    height: 200px;
+    padding: 60px;
+}

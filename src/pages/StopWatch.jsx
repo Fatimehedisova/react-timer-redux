@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import './StopWatch.css'
 import {
   startTimer,
   stopTimer,
@@ -11,53 +12,35 @@ const StopWatch = () => {
   const dispatch = useDispatch();
   const { time, isRunning, stopTimes } = useSelector((state) => state.clock);
   useEffect(() => {
-    let intervalId;
+    let a;
     if (isRunning) {
-      intervalId = setInterval(() => {
+      a = setInterval(() => {
         dispatch(updateTime());
       }, 1000);
     }
-    return () => clearInterval(intervalId);
+    return () => clearInterval(a);
   }, [isRunning, dispatch]);
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = time % 60;
+  const hour = Math.floor(time / 3600);
+  const minute = Math.floor((time % 3600) / 60);
+  const second = time % 60;
   return (
     <div >
-      <div >
-        <div >
-          {[hours, minutes, seconds].map((unit, index) => (
-            <div
-              key={index}>
-              {unit < 10 ? `0${unit}` : unit}
-            </div>
-          ))}
+      <div className="stopWatch">
+        <div className="times">
+          {[hour, minute, second].map((item, index) => (
+            <div className="stopWatchTimes" key={index}> {item < 10 ? `0${item}` : item} </div>))}
         </div>
       </div>
-      <div >
-        <button
-          onClick={() => {
-            isRunning ? dispatch(stopTimer()) : dispatch(startTimer());
-          }}>
-          {isRunning ? "Stop" : "Start"}
-        </button>
-
-        <button
-          onClick={() => dispatch(lap())}
-          disabled={!isRunning}>
-          Lap
-        </button>
-        <button
-          onClick={() => dispatch(resetTimer())}>
-          Reset
-        </button>
+      <div className="stopWatchButtons">
+        <button className="btn"onClick={() => { isRunning ? dispatch(stopTimer()) : dispatch(startTimer()); }}>{isRunning ? "Stop" : "Start"}</button>
+        <button  className="btn" onClick={() => dispatch(lap())} disabled={!isRunning}>Lap</button>
+        <button  className="btn" onClick={() => dispatch(resetTimer())}> Reset </button>
       </div>
-      <ul className="my-10">
-        {stopTimes.map((stopTime, index) => (
-          <li key={index} >
-            {index + 1}. {stopTime}
-          </li>
-        ))}
+      <ul className="stopWatchLaps">{stopTimes.map((stopTime, index) => (
+        <li key={index} >
+          {stopTime}
+        </li>
+      ))}
       </ul>
     </div>
   );
