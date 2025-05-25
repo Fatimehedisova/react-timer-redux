@@ -1,0 +1,16 @@
+.top-part{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+a{
+  text-decoration: none;
+  border: 2px solid lightgrey;
+  padding: 10px 40px 20px 40px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.active{
+  color: white;
+  background-color: #a357df;
+}
